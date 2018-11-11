@@ -29,8 +29,10 @@ public class GenerateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_generate);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_2,listItems);
+        listView=findViewById(R.id.list);
+        adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,listItems);
         Intent intent=getIntent();
+        listView.setAdapter(adapter);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +83,7 @@ public class GenerateActivity extends AppCompatActivity {
                 //Log.d("field", fieldEditText.getText().toString().trim());
                 field=fieldEditText.getText().toString();
                 value=valueEditText.getText().toString();
-                result=field+"!"+value;
+                result=field+":"+value;
                 adapter.add(result);
                 finalResult=finalResult+";"+result;
             }
