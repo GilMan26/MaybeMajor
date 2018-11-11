@@ -3,6 +3,7 @@ package com.example.gilman.maybemajor;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,16 +20,21 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_result);
         Intent intent=getIntent();
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         String[] Label, Data;
         Label=intent.getStringArrayExtra("boom");
         Data=intent.getStringArrayExtra("bing");
-        resultAdapter=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,resultList);
+        //resultAdapter=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,resultList);
         resultListView=findViewById(R.id.resultList);
         resultListView.setAdapter(resultAdapter);
-        for(int i=0;i<Label.length;i++){
+        int i=0;
+        while(Label[i]!=null){
             String item=Label[i]+" : " +Data[i];
             resultAdapter.add(item);
+            i++;
         }
+
+
 
 
 //        String Labelfull = null,Datafull = null;

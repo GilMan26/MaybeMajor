@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -29,6 +30,7 @@ public class GenerateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_generate);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         listView=findViewById(R.id.list);
         adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,listItems);
         Intent intent=getIntent();
