@@ -6,6 +6,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="bs">This is a conceptual application which creates user defined QR codes and also has the ability to scan those in a perfect form. A minor project by students of Guru Tegh Bahadur Institute of Technology.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
