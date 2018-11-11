@@ -28,7 +28,8 @@
         <activity
             android:name=".GenerateActivity"
             android:label="@string/title_activity_generate"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>

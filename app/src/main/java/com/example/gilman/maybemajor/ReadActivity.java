@@ -60,7 +60,7 @@ public class ReadActivity extends AppCompatActivity {
 
         for (int i = 0; i < res.length(); i++) {
             char ch = res.charAt(i);
-            if (ch == '!') {
+            if (ch == ':') {
                 colon = i;
                 Label[indexlabel] = res.substring(start, colon - 1);
                 indexlabel++;
