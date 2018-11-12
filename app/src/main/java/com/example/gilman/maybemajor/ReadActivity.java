@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
+
 public class ReadActivity extends AppCompatActivity {
 
     Button scan_btn;
@@ -42,6 +44,7 @@ public class ReadActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        ArrayList<String> resultAL=new ArrayList<>();
         intent=new Intent(this, ResultActivity.class);
         String res;
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -61,24 +64,29 @@ public class ReadActivity extends AppCompatActivity {
         int colon = 0, semicolon, start = 0, indexlabel = 0, indexdata = 0;
 
         for (int i = 0; i < res.length(); i++) {
+            String indField=null;
             char ch = res.charAt(i);
             if (ch == ':') {
                 colon = i;
                 Label[indexlabel] = res.substring(start, colon - 1);
+                indField=res.substring(start, colon - 1)+" : ";
                 indexlabel++;
             }
             if (ch == ';') {
                 semicolon = i;
                 Data[indexdata] = res.substring(colon + 1, semicolon);
+                indField=indField+res.substring(colon + 1, semicolon);
                 indexdata++;
                 start = semicolon + 1;
             }
             if (ch == '$') {
                 break;
             }
+            resultAL.add(indField);
         }
         intent.putExtra("boom", Label);
         intent.putExtra("bing", Data);
+//        intent.putExtra("finalArray", resultAL);
         startActivity(intent);
     }
 }
