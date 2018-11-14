@@ -27,16 +27,11 @@ public class ResultActivity extends AppCompatActivity {
         Label=intent.getStringArrayExtra("boom");
         Data=intent.getStringArrayExtra("bing");
         result=intent.getStringArrayListExtra("finalArray");
-        resultAdapter=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,result);
-        resultListView=findViewById(R.id.resultList);
+        resultList=result;
+        resultAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,result);
+        resultListView=(ListView)findViewById(R.id.resultList);
         resultListView.setAdapter(resultAdapter);
         resultAdapter.addAll(result);
-//        int i=0;
-//        while(Label[i]!=null){
-//            String item=Label[i]+" : " +Data[i];
-//            resultAdapter.add(item);
-//            i++;
-//        }
 
 
 
