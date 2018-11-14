@@ -21,13 +21,13 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_result);
         Intent intent=getIntent();
-        ArrayList<String> result;
+        ArrayList<String> result=new ArrayList<>();
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         String[] Label, Data;
         Label=intent.getStringArrayExtra("boom");
         Data=intent.getStringArrayExtra("bing");
         result=intent.getStringArrayListExtra("finalArray");
-        //resultAdapter=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,resultList);
+        resultAdapter=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,result);
         resultListView=findViewById(R.id.resultList);
         resultListView.setAdapter(resultAdapter);
         resultAdapter.addAll(result);
