@@ -34,15 +34,13 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        QRDatabase database = Room.databaseBuilder(this.getApplicationContext(),QRDatabase.class,"qr_db").build();
-//        qrDao = database.getQrDao();
-//        savedData = qrDao.getData();
-//        listView=findViewById(R.id.savedList);
-
-        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.expense_row_layout,R.id.expenseName,expenses);
-
-//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,savedData);
-//        listView.setAdapter(adapter);
+        QRDatabase database = Room.databaseBuilder(this.getApplicationContext(),QRDatabase.class,"qr_db").build();
+        qrDao = database.getQrDao();
+        savedData = qrDao.getData();
+        listView=findViewById(R.id.savedList);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,savedData);
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

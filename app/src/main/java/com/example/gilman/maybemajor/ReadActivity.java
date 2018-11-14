@@ -15,7 +15,7 @@ import com.google.zxing.integration.android.IntentResult;
 import java.util.ArrayList;
 
 public class ReadActivity extends AppCompatActivity {
-
+    QRDao qrDao;
     Button scan_btn;
     String[] Label = new String[10];
     String[] Data = new String[10];
@@ -79,14 +79,19 @@ public class ReadActivity extends AppCompatActivity {
                         }
                         resultAL.add(indField);
                     }
+                    SavedData dbData=new SavedData(resultAL.get(0));
+                    qrDao.addEntity(dbData);
                     customIntent.putExtra("boom", Label);
                     customIntent.putExtra("bing", Data);
                     customIntent.putExtra("finalArray", resultAL);
                     startActivity(customIntent);
                 }
                 else{
+                    SavedData dbData1=new SavedData(res);
+                    qrDao.addEntity(dbData1);
                     otherIntent.putExtra("data", res);
                     startActivity(otherIntent);
+
                 }
             }
         }
