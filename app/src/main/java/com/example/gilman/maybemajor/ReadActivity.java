@@ -15,11 +15,12 @@ import com.google.zxing.integration.android.IntentResult;
 import java.util.ArrayList;
 
 public class ReadActivity extends AppCompatActivity {
-    QRDao qrDao;
     Button scan_btn;
     String[] Label = new String[10];
     String[] Data = new String[10];
     Intent otherIntent, customIntent;
+//    QRDatabase qrDatabase=QRDatabase.getqrDatabase(getApplicationContext());
+//    QRDao qrDao=qrDatabase.getQrDao();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,14 +1,13 @@
 package com.example.gilman.maybemajor;
 
-import java.util.ArrayList;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 @Entity(tableName = "savedQR")
 public class SavedData {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     int id;
 
     @ColumnInfo
@@ -18,10 +17,10 @@ public class SavedData {
         this.savedData = savedData;
     }
 
-    public SavedData(int id, String savedData) {
-        this.id = id;
-        this.savedData = savedData;
-    }
+//    public SavedData(int id, String savedData) {
+//        this.id = id;
+//        this.savedData = savedData;
+//    }
 
     public int getId() {
         return id;

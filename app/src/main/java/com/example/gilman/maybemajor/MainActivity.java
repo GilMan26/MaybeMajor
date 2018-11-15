@@ -22,13 +22,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.room.Room;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemLongClickListener {
     QRDao qrDao;
-    ArrayList<SavedData> savedDataList;
+    List<SavedData> savedDataList;
     ListView listView;
     ArrayAdapter<SavedData> adapter;
     @Override
@@ -37,7 +34,14 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        QRDatabase database = Room.databaseBuilder(this,QRDatabase.class,"qr_db").build();
+//        QRDatabase database=QRDatabase.getqrDatabase(this);
+//        qrDao=database.getQrDao();
+//        savedDataList=qrDao.getData();
+//        listView=findViewById(R.id.savedList);
+//        adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, savedDataList);
+//        listView.setAdapter(adapter);
+//        adapter.addAll(savedDataList);
+////        QRDatabase database = Room.databaseBuilder(this,QRDatabase.class,"qr_db").build();
 //        qrDao = database.getQrDao();
 //        savedDataList = qrDao.getData();
 //        listView=findViewById(R.id.savedList);
