@@ -1,5 +1,6 @@
 package com.example.gilman.maybemajor;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,12 +32,6 @@ public class MainActivity extends AppCompatActivity
     ListView listView;
     ArrayList<String> dataList;
     ArrayAdapter<String> adapter;
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        refresh();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +68,7 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
@@ -120,12 +116,23 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void refresh(){
+//        List<SavedData> saved;
+//        ArrayList<String> data;
+//        saved=qrDao.getData();
+//        data=getStringData(saved);
+//        dataList=data;
+//        adapter.notifyDataSetChanged();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //refresh();
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
-        final String savedData = dataList.get(i);
+        //final String savedData = dataList.get(i);
         final int position = i;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirm Delete");
@@ -137,11 +144,12 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialogInterface, int i) {
                 //Toast.makeText(MainActivity.this,"Ok Presses",Toast.LENGTH_LONG).show();
                 String data=dataList.get(position);
-                long id=qrDao.getmaxId();
+                long id=qrDao.getID(data);
                 SavedData data1=new SavedData(id, data);
                 qrDao.deleteEntity(data1);
                 dataList.remove(position);
                 adapter.notifyDataSetChanged();
+                //refresh();
             }
         });
 

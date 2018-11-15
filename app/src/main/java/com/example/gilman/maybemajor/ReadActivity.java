@@ -19,8 +19,8 @@ public class ReadActivity extends AppCompatActivity {
     String[] Label = new String[10];
     String[] Data = new String[10];
     Intent otherIntent, customIntent;
-//    QRDatabase qrDatabase=QRDatabase.getqrDatabase(this);
-//    QRDao qrDao=qrDatabase.getQrDao();
+    QRDatabase qrDatabase=QRDatabase.getqrDatabase(this);
+    QRDao qrDao=qrDatabase.getQrDao();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +64,7 @@ public class ReadActivity extends AppCompatActivity {
                         char ch = res.charAt(i);
                         if (ch == ':') {
                             colon = i;
-                            Label[indexlabel] = res.substring(start, colon - 1);
+                            Label[indexlabel] = res.substring(start, colon );
                             indField=res.substring(start, colon - 1)+" : ";
                             indexlabel++;
                         }
@@ -80,16 +80,16 @@ public class ReadActivity extends AppCompatActivity {
                         }
                         resultAL.add(indField);
                     }
-//                    SavedData dbData=new SavedData(qrDao.getmaxId()+1, resultAL.get(0));
-//                    qrDao.addEntity(dbData);
+                    SavedData dbData=new SavedData(qrDao.getmaxId()+1, resultAL.get(0));
+                    qrDao.addEntity(dbData);
                     customIntent.putExtra("boom", Label);
                     customIntent.putExtra("bing", Data);
                     customIntent.putExtra("finalArray", resultAL);
                     startActivity(customIntent);
                 }
                 else{
-//                    SavedData dbData1=new SavedData(qrDao.getmaxId()+1, res);
-//                    qrDao.addEntity(dbData1);
+                    SavedData dbData1=new SavedData(qrDao.getmaxId()+1, res);
+                    qrDao.addEntity(dbData1);
                     otherIntent.putExtra("data", res);
                     startActivity(otherIntent);
 

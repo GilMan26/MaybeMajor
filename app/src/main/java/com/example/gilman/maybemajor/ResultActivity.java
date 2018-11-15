@@ -28,12 +28,29 @@ public class ResultActivity extends AppCompatActivity {
         String[] Label, Data;
         Label=intent.getStringArrayExtra("boom");
         Data=intent.getStringArrayExtra("bing");
+        //result=intent.getStringArrayListExtra("finalArray");
+        String[][] coloumns={Label,Data};
         result=intent.getStringArrayListExtra("finalArray");
-        resultList=result;
-        resultAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,result);
-        resultListView=(ListView)findViewById(R.id.resultList);
-        resultListView.setAdapter(resultAdapter);
-        resultAdapter.addAll(result);
+        ArrayList<word> words=new ArrayList<>();
+        for(int i=0;i<Label.length;i++)
+        {
+            words.add(new word(Label[i],Data[i]));
+        }
+        WordAdapter wordAdapter = new WordAdapter(this,words);
+//        resultAdapter=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_2,Label);
+        resultListView=findViewById(R.id.list);
+        resultListView.setAdapter(wordAdapter);
+        wordAdapter.notifyDataSetChanged();
+
+
+
+
+
+//        resultList=result;
+//        resultAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,result);
+//        resultListView=(ListView)findViewById(R.id.resultList);
+//        resultListView.setAdapter(resultAdapter);
+//        resultAdapter.addAll(result);
 
 
 

@@ -22,4 +22,7 @@ public interface QRDao {
 
     @Query("SELECT MAX(id) FROM savedQR")
     long getmaxId();
+
+    @Query("SELECT id FROM savedQR WHERE savedData=:data")
+    long getID(String data);
 }
