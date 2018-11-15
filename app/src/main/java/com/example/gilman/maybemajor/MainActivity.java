@@ -22,12 +22,15 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemLongClickListener {
     QRDao qrDao;
     List<SavedData> savedDataList;
     ListView listView;
-    ArrayAdapter<SavedData> adapter;
+    ArrayList<String> dataList;
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,17 +40,12 @@ public class MainActivity extends AppCompatActivity
         QRDatabase database=QRDatabase.getqrDatabase(this);
         qrDao=database.getQrDao();
         savedDataList=qrDao.getData();
+        dataList=getStringData(savedDataList);
         listView=findViewById(R.id.savedList);
-        adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, savedDataList);
+        adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataList);
         listView.setAdapter(adapter);
-        adapter.addAll(savedDataList);
-//        QRDatabase database = Room.databaseBuilder(this,QRDatabase.class,"qr_db").build();
-//        qrDao = database.getQrDao();
-//        savedDataList = qrDao.getData();
-//        listView=findViewById(R.id.savedList);
-//        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,savedDataList);
-//        listView.setAdapter(adapter);
-//        adapter.notifyDataSetChanged();
+        adapter.addAll(dataList);
+
         listView.setOnItemLongClickListener(this);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -116,7 +114,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
-        SavedData savedData = savedDataList.get(i);
+        final String savedData = dataList.get(i);
         final int position = i;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirm Delete");
@@ -126,11 +124,11 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
-
-
                 //Toast.makeText(MainActivity.this,"Ok Presses",Toast.LENGTH_LONG).show();
-                savedDataList.remove(position);
+                String data=dataList.get(position);
+                SavedData data1=new SavedData(data);
+                qrDao.deleteEntity(data1);
+                dataList.remove(position);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -145,5 +143,14 @@ public class MainActivity extends AppCompatActivity
         dialog.show();
 
         return true;
+    }
+
+    public ArrayList<String> getStringData(List<SavedData> data){
+        ArrayList<String> list=new ArrayList<>();
+
+        for(int i=0;i<data.size();i++){
+            list.add(data.get(i).getSavedData());
+        }
+        return list;
     }
 }
