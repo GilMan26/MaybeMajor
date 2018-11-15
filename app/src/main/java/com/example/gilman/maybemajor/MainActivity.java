@@ -96,7 +96,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.code) {
-
+            Intent intent=new Intent(this, MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.scan) {
             Intent intent=new Intent(this, ReadActivity.class);
             startActivity(intent);
@@ -127,6 +128,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        adapter.notifyDataSetChanged();
         //refresh();
     }
 

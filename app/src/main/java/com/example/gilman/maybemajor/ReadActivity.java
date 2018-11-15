@@ -80,7 +80,8 @@ public class ReadActivity extends AppCompatActivity {
                         }
                         resultAL.add(indField);
                     }
-                    SavedData dbData=new SavedData(qrDao.getmaxId()+1, resultAL.get(0));
+                    String customText=Label[0]+" : "+Data[0];
+                    SavedData dbData=new SavedData(qrDao.getmaxId()+1, customText);
                     qrDao.addEntity(dbData);
                     customIntent.putExtra("boom", Label);
                     customIntent.putExtra("bing", Data);
