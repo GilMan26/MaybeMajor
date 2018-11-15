@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical"
+        android:id="@+id/data_layout">
+
+        <TextView
+            android:id="@+id/label_word"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Label" />
+
+
+        <TextView
+            android:id="@+id/data_word"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            tools:text="Data" />
+
+    </LinearLayout>
+
+</LinearLayout>
