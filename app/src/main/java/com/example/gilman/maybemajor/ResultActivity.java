@@ -16,6 +16,8 @@ public class ResultActivity extends AppCompatActivity {
     ArrayList<String> resultList;
     ListView resultListView;
     ArrayAdapter<String> resultAdapter;
+    QRDatabase qrDatabase=QRDatabase.getqrDatabase(this);
+    QRDao qrDao=qrDatabase.getQrDao();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

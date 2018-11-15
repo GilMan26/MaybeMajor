@@ -31,6 +31,13 @@ public class MainActivity extends AppCompatActivity
     ListView listView;
     ArrayList<String> dataList;
     ArrayAdapter<String> adapter;
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        refresh();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         listView=findViewById(R.id.savedList);
         adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataList);
         listView.setAdapter(adapter);
-        adapter.addAll(dataList);
+//        adapter.addAll(dataList);
 
         listView.setOnItemLongClickListener(this);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -112,6 +119,10 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void refresh(){
+
+    }
+
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
         final String savedData = dataList.get(i);
@@ -126,7 +137,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialogInterface, int i) {
                 //Toast.makeText(MainActivity.this,"Ok Presses",Toast.LENGTH_LONG).show();
                 String data=dataList.get(position);
-                SavedData data1=new SavedData(data);
+                long id=qrDao.getmaxId();
+                SavedData data1=new SavedData(id, data);
                 qrDao.deleteEntity(data1);
                 dataList.remove(position);
                 adapter.notifyDataSetChanged();

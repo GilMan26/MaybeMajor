@@ -8,6 +8,8 @@ import android.widget.TextView;
 public class StringResult extends AppCompatActivity {
     TextView textView;
     Intent intent;
+    QRDatabase qrDatabase=QRDatabase.getqrDatabase(this);
+    QRDao qrDao=qrDatabase.getQrDao();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,5 +18,7 @@ public class StringResult extends AppCompatActivity {
         intent=getIntent();
         String text=intent.getStringExtra("data");
         textView.setText(text);
+        SavedData dbData1=new SavedData(qrDao.getmaxId()+1, text);
+        qrDao.addEntity(dbData1);
     }
 }

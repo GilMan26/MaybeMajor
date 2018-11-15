@@ -8,21 +8,21 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "savedQR")
 public class SavedData {
     @PrimaryKey(autoGenerate = true)
-    int id;
+    long id;
 
     @ColumnInfo
     String savedData;
 
-    public SavedData(String savedData) {
-        this.savedData = savedData;
-    }
-
-//    public SavedData(int id, String savedData) {
-//        this.id = id;
+//    public SavedData(String savedData) {
 //        this.savedData = savedData;
 //    }
 
-    public int getId() {
+    public SavedData(long id, String savedData) {
+        this.id = id;
+        this.savedData = savedData;
+    }
+
+    public long getId() {
         return id;
     }
 
